@@ -1,7 +1,6 @@
 import os  # Importing the os module for interacting with the operating system
 import sys  # Importing the sys module to interact with the Python runtime environment
 from pathlib import Path  # Importing Path from pathlib to handle filesystem paths
-
 sys.path.append(str(Path('src').parent.parent))  # Adding the parent directory of 'src' to the system path
 from src.exception import CustomException  # Importing the CustomException class from the src.exception module
 from src.logger import logging  # Importing logging from a custom logger module in the src package
@@ -9,6 +8,9 @@ import pandas as pd  # Importing pandas for data manipulation and analysis
 
 from sklearn.model_selection import train_test_split  # Importing train_test_split for splitting data into training and test sets
 from dataclasses import dataclass  # Importing dataclass for creating data classes
+
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -50,9 +52,12 @@ class DataIngestion:
             raise CustomException(e, sys)  # Raise a custom exception with detailed error information
 
 if __name__ == "__main__":
-    obj = DataIngestion()  # Create an instance of the DataIngestion class
-    obj.initiate_data_ingestion()  # Initiate the data ingestion process
+    
+    obj=DataIngestion() # Create an instance of the DataIngestion class
+    train_data,test_data=obj.initiate_data_ingestion() # Initiate the data ingestion process
 
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
 
 '''
 --------------Summary of the code---------

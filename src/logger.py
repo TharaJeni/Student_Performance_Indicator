@@ -1,5 +1,8 @@
 import logging  # Import the logging module to enable logging capabilities
 import os  # Import the os module for interacting with the operating system
+import sys
+from pathlib import Path
+sys.path.append(str(Path('src').parent.parent))  
 from datetime import datetime  # Import datetime to get the current date and time
 
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"  # Create a log file name with the current date and time

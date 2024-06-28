@@ -50,4 +50,4 @@ def predict_datapoint():  # Define the view function for predicting data points
 
 # Run the application
 if __name__ == "__main__":  # Check if the script is run directly
-    app.run(host="0.0.0.0")  # Run the Flask application, accessible from all network interfaces
+    app.run(host="0.0.0.0", debug=True)  # Start the Flask application, enabling debug mode, and make it accessible from all network interfaces
